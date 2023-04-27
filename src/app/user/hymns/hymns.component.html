@@ -1,0 +1,32 @@
+<div id="hymns">
+  <div class="container-fluid">
+    <div class="address">
+      <i class="fa-solid fa-cross"></i>
+      <h2>الترانيم</h2>
+    </div>
+    <div class="row">
+      <div class="col-md-2 border-start border-1 dis-hymns-big">
+        <div *ngFor="let hymns of hymnsList" (click)="showVideo($event)" class="hym">
+          <iframe width="100%" height="150" [src]="hymns.url | safe:''" class="aside-iframe"
+            (click)="showVideo($event)"></iframe>
+          <h3 class="d-none">{{hymns.name}}</h3>
+          <p class="d-none">{{hymns.date}}</p>
+        </div>
+      </div>
+      <div class="col-md-10" *ngIf="hymnsList[0] != undefined">
+        <iframe width="100%" height="250" [src]="hymnsList[0].url | safe:''" id="showerVideo">
+        </iframe>
+        <h3 id="showerVideoName">{{hymnsList[0].name}}</h3>
+        <p id="showerVideoDate">{{hymnsList[0].date}}</p>
+      </div>
+      <div class="col-md-2 border-start border-1 dis-hymns dis-hymns-short">
+        <div *ngFor="let hymns of hymnsList" (click)="showVideo($event)" class="hym">
+          <iframe width="100%" height="150" [src]="hymns.url | safe:''" class="aside-iframe"
+            (click)="showVideo($event)"></iframe>
+          <h3 class="d-none">{{hymns.name}}</h3>
+          <p class="d-none">{{hymns.date}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

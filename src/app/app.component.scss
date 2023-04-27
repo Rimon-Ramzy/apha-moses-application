@@ -1,0 +1,23 @@
+div {
+  // overflow: hidden;
+}
+
+app-loading-page {
+  transition: 0.7s;
+}
+
+.wrapper {
+  .content {
+    display: grid;
+    grid-template-columns: auto 1fr;
+  }
+}
+
+@media (max-width: 576px) {
+  .wrapper {
+    .content {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}

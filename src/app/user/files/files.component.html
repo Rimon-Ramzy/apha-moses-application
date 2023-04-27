@@ -1,0 +1,37 @@
+<div id="files">
+  <div class="container">
+    <div class="address">
+      <i class="fa-solid fa-cross"></i>
+      <h2>الملفات</h2>
+    </div>
+    <div class="row">
+      <div class="card">
+        <div class="card-body">
+          <table class="table">
+            <thead>
+              <tr>
+                <th></th>
+                <th>الاسم</th>
+                <th>التاريخ</th>
+                <th>عرض</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of filesList;let i = index;">
+                <td>{{i+1}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.date}}</td>
+                <td>
+                  <button class="btn"><a [href]="item.url" target="_blank" download>عرض</a></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <div id="viewer">
+</div> -->
+<!-- <ngx-extended-pdf-viewer></ngx-extended-pdf-viewer> -->

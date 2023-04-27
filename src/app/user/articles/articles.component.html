@@ -1,0 +1,18 @@
+<div id="articles">
+  <div class="container">
+    <div class="address">
+      <i class="fa-solid fa-cross"></i>
+      <h2>المقالات</h2>
+    </div>
+    <div class="row">
+      <div class="col-md-12" *ngFor="let item of articlesList;let i =index">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{i+1}}- {{item.name}}</h5>
+            <p class="card-text">{{item.text}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

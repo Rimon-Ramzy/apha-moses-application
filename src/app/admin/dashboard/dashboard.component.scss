@@ -1,0 +1,121 @@
+#dashboard {
+  padding-block: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+
+  table {
+    background-color: #eee;
+
+    thead {
+      background-color: #ddd;
+
+      th {
+        padding-block: 10px;
+        padding-inline-start: 20px;
+      }
+    }
+
+    tbody {
+      .updadteBtn {
+        background-color: #4662AB;
+        color: #FFF;
+      }
+    }
+  }
+
+  .card {
+    // background-color: #87ACDC;
+    width: 60%;
+    margin: 0 auto;
+  }
+
+  .address {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 20px;
+    margin-block-end: 20px;
+
+    .icon {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background-color: #4662AB;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-inline-end: 10px;
+    }
+
+    i {
+      font-size: 20px;
+      color: #FFF;
+    }
+
+    h2 {
+      color: #4662AB;
+      margin: 0;
+    }
+  }
+
+
+
+  select {
+    width: 100%;
+  }
+
+  .body {
+    margin-block-start: 40px;
+
+    .submit-btn {
+      margin-block-start: 20px;
+      background-color: #4662AB;
+      color: #FFF;
+    }
+
+    label {
+      margin-block-end: 10px;
+    }
+
+    .files,
+    .videos {
+      label {
+        display: block;
+      }
+
+      .input-file,
+      .input-video {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+
+        p {
+          margin: 0;
+          margin-inline-start: 15px;
+        }
+
+        button {
+          background-color: #4662AB;
+          color: #FFF;
+        }
+      }
+
+
+    }
+  }
+}
+
+
+@media (max-width: 576px) {
+  #dashboard {
+    .card {
+      width: 100%;
+    }
+
+    select {
+      // width: fit-content;
+    }
+  }
+}

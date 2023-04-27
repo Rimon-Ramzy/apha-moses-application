@@ -1,0 +1,16 @@
+{
+  "projects": {
+    "default": "youth-meeting-cfff2",
+    "youth": "youth-meeting-cfff2"
+  },
+  "targets": {
+    "youth-meeting-cfff2": {
+      "hosting": {
+        "youth-meeting": [
+          "youth-meeting-cfff2"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}

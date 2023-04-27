@@ -1,0 +1,73 @@
+#hymns {
+  padding-block: 30px;
+
+  .dis-hymns-short {
+    display: none;
+  }
+
+  .address {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-block-end: 20px;
+    margin-block-end: 20px;
+    border-bottom: 1px solid #eee;
+
+    i {
+      font-size: 22px;
+      margin-inline-end: 5px;
+      color: #4662AB;
+    }
+
+    h2 {
+      font-size: 30px;
+      margin-bottom: 0;
+      color: #4662AB;
+    }
+  }
+
+  #showerVideoName {
+    margin-block-start: 5px;
+  }
+
+  .aside-iframe {
+    pointer-events: none;
+  }
+}
+
+
+@media (max-width: 576px) {
+  #hymns {
+    .dis-hymns-big {
+      display: none;
+    }
+
+    .dis-hymns-short {
+      display: block;
+
+
+    }
+
+    .dis-hymns {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-direction: row;
+      flex-wrap: wrap;
+
+      .hym {
+        width: 49%;
+      }
+    }
+  }
+}
+
+@media (max-width: 326px) {
+  #hymns {
+    .dis-hymns {
+      .hym {
+        width: 100%;
+      }
+    }
+  }
+}

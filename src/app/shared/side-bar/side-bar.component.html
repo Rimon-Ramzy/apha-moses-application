@@ -1,0 +1,44 @@
+<div id="side-bar">
+  <div class="bar" (click)="openSidebar()">
+    <img src="./../../../assets/icons/menu.png" alt="bars">
+  </div>
+  <div class="icons">
+    <div class="box hymns" routerLink="/home/hymns" routerLinkActive="active">
+      <div class="img-icon">
+        <img src="./../../../assets/icons/video-marketing.png" alt="hymns" width="100" height="100">
+      </div>
+      <h6 class="mb-0">الترانيم</h6>
+    </div>
+    <div class="box videos" routerLink="/home/videos" routerLinkActive="active">
+      <div class="img-icon">
+        <img src="./../../../assets/icons/hymns.png" alt="videos" width="100" height="100">
+      </div>
+      <h6 class="mb-0">الفيديوهات</h6>
+    </div>
+    <div class="box files" routerLink="/home/files" routerLinkActive="active">
+      <div class="img-icon">
+        <img src="./../../../assets/icons/folder.png" alt="files" width="100" height="100">
+      </div>
+      <h6 class="mb-0">الملفات</h6>
+    </div>
+    <div class="box articles" routerLink="/home/articles" routerLinkActive="active">
+      <div class="img-icon">
+        <img src="./../../../assets/icons/articles.png" alt="articles" width="100" height="100">
+      </div>
+      <h6 class="mb-0">المقالات</h6>
+    </div>
+    <div class="box dashboard" routerLink="/dashboard" routerLinkActive="active" *ngIf="isAdmin$ | async">
+      <!-- <div class="box dashboard" routerLink="/dashboard" routerLinkActive="active"> -->
+      <div class="img-icon">
+        <img src="./../../../assets/icons/admin.png" alt="dashboard" width="100" height="100">
+      </div>
+      <h6 class="mb-0">لوحة التحكم</h6>
+    </div>
+    <div class="box logout" (click)="signOut()">
+      <div class="img-icon">
+        <img src="./../../../assets/icons/logout.png" alt="logout" width="100" height="100">
+      </div>
+      <h6 class="mb-0">تسجيل الخروج</h6>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+#articles {
+  margin-block: 30px;
+
+  .address {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-block-end: 20px;
+    margin-block-end: 20px;
+    border-bottom: 1px solid #eee;
+
+    i {
+      font-size: 22px;
+      margin-inline-end: 5px;
+      color: #4662AB;
+    }
+
+    h2 {
+      font-size: 30px;
+      margin-bottom: 0;
+      color: #4662AB;
+    }
+  }
+
+  .card {
+    margin-block-end: 15px;
+  }
+}

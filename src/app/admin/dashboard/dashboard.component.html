@@ -1,0 +1,222 @@
+<div id="dashboard">
+  <div class="container-fluid">
+    <div class="card">
+      <div class="card-body">
+        <div class="address">
+          <div class="icon">
+            <i class="fa-solid fa-cross"></i>
+          </div>
+          <h2>لوحة التحكم</h2>
+        </div>
+        <select name="" id="" class="form-select" aria-label="Default select example" (change)="chooseType($event)">
+          <option value="" selected disabled>قم برفع ما تريد</option>
+          <option value="hymns">ترانيم</option>
+          <option value="videos">فيديوهات</option>
+          <option value="files">ملفات</option>
+          <option value="articles">مقالات</option>
+          <option value="register">تسجيل مسؤل جديد</option>
+        </select>
+        <div class="body">
+          <div class="hymns" *ngIf="typeInput == 'hymns'">
+            <div class="mb-4">
+              <label for="hymnName">اسم الترنيمة</label>
+              <input type="text" id="hymnName" placeholder="ادخل اسم الترنيمة هنا" class="form-control"
+                [(ngModel)]="hymnName">
+            </div>
+            <div>
+              <label for="hymns">رابط الترنيمة</label>
+              <input id="hymns" type="text" class="form-control" [(ngModel)]="hymnInput"
+                placeholder="ادخل رابط الترنيمة هنا">
+            </div>
+            <button (click)="submitHymns()" class="form-control submit-btn">رفع الترنيمه</button>
+            <hr>
+            <table class="table">
+              <thead>
+                <th>اسم الترنيمه</th>
+                <th>تعديل</th>
+                <th>حذف</th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of hymnsList;let i = index">
+                  <td>{{i+1}}- {{item.name}}</td>
+                  <td><button class="btn updadteBtn" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                      (click)="popupdateHymn(item)">تعديل</button></td>
+                  <td><button class="btn btn-danger" (click)="deleteHymn(item)">حذف</button></td>
+                </tr>
+              </tbody>
+            </table>
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+              aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-body">
+                    <form>
+                      <input type="text" class="form-control mb-2" placeholder="اسم الترنيمة" name="hymnName"
+                        [(ngModel)]="hymnNameForUpdate">
+                      <input type="text" class="form-control" placeholder="رابط الترنيمة" name="hymnUrl"
+                        [(ngModel)]="hymnUrlForUpdate">
+                    </form>
+                  </div>
+                  <div class="border-top border-2 py-3 px-2">
+                    <button type="button" class="btn btn-primary ms-2" (click)="updateHymn()">حفظ التعديلات</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">الغاء</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="videos" *ngIf="typeInput == 'videos'">
+            <div class="mb-4">
+              <label for="videoName">اسم الفيديو</label>
+              <input type="text" id="videoName" placeholder="ادخل اسم الفيديو هنا" class="form-control"
+                [(ngModel)]="videoName">
+            </div>
+            <div>
+              <label for="videos">رفع ملف</label>
+              <div class="input-video form-control">
+                <button id="videos" class="btn" (click)="chooseVideo()">اختار الفيديو</button>
+                <p id="chooseVideoLabel">ليس هناك فيديوهات مختاره</p>
+              </div>
+            </div>
+            <div class="progress mt-2">
+              <div class="progress-bar progress-bar-info" role="progressbar" attr.aria-valuenow="{{percentage}}"
+                aria-valuemin="0" aria-valuemax="100" [ngStyle]="{ width: percentage + '%' }">
+                {{percentage}}%
+              </div>
+            </div>
+            <button class="form-control submit-btn" (click)="uploadVideo($event)">رفع الفيديو</button>
+            <input type="file" accept="video/*" id="videos" style="visibility: hidden;" class="form-control videoInput"
+              name="videos" [(ngModel)]="videoInput" (change)="changeVideoLabel($event)" (change)="selectVideo($event)">
+            <hr>
+            <table class="table">
+              <thead>
+                <th>اسم الترنيمه</th>
+                <th>حذف</th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of videosList;let i = index">
+                  <td>{{i+1}}- {{item.name}}</td>
+                  <td><button class="btn btn-danger" (click)="deleteVideo(item)">حذف</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="files" *ngIf="typeInput == 'files'">
+            <div class="mb-4">
+              <label for="fileName">اسم الملف</label>
+              <input type="text" id="fileName" placeholder="ادخل اسم الملف هنا" class="form-control"
+                [(ngModel)]="fileName">
+            </div>
+            <div>
+              <label for="files">رفع ملف</label>
+              <div class="input-file form-control">
+                <button id="files" class="btn" (click)="chooseFile()">اختار الملف</button>
+                <p id="chooseFileLabel">ليس هناك ملفات مختاره</p>
+              </div>
+            </div>
+            <div class="progress mt-2">
+              <div class="progress-bar progress-bar-info" role="progressbar" attr.aria-valuenow="{{percentage}}"
+                aria-valuemin="0" aria-valuemax="100" [ngStyle]="{ width: percentage + '%' }">
+                {{percentage}}%
+              </div>
+            </div>
+            <button class="form-control submit-btn" (click)="uploadFile($event)">رفع الملف</button>
+            <input type="file"
+              accept=".doc,.docx,.xml,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,.pdf"
+              id="files" style="visibility: hidden;" class="form-control fileInput" placeholder="قم باختيار الملف"
+              name="files" [(ngModel)]="fileInput" (change)="changeFileLabel($event)" (change)="selectFile($event)">
+            <hr>
+            <table class="table">
+              <thead>
+                <th>اسم الترنيمه</th>
+                <th>حذف</th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of filesList;let i = index">
+                  <td>{{i+1}}- {{item.name}}</td>
+                  <td><button class="btn btn-danger" (click)="deletefile(item)">حذف</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="articles" *ngIf="typeInput == 'articles'">
+            <div class="mb-4">
+              <label for="articleName">اسم المقالة</label>
+              <input type="text" id="articleName" placeholder="ادخل اسم المقالة هنا" class="form-control"
+                [(ngModel)]="articleName">
+            </div>
+            <div>
+              <label for="articles">نص المقالة</label>
+              <textarea name="" id="articles" class="form-control" placeholder="ادخل المقالة هنا" cols="20" rows="5"
+                style="resize: none;" [(ngModel)]="articleInput"></textarea>
+            </div>
+            <button (click)="submitArticles()" class="form-control submit-btn">رفع المقالة</button>
+            <hr>
+            <table class="table">
+              <thead>
+                <th>اسم الترنيمه</th>
+                <th>تعديل</th>
+                <th>حذف</th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of articlesList;let i = index">
+                  <td>{{i+1}}- {{item.name}}</td>
+                  <td><button class="btn updadteBtn" data-bs-toggle="modal" data-bs-target="#exampleModal2"
+                      (click)="popupdateArticle(item)">تعديل</button></td>
+                  <td><button class="btn btn-danger" (click)="deletearticle(item)">حذف</button></td>
+                </tr>
+              </tbody>
+            </table>
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel"
+              aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-body">
+                    <form>
+                      <input type="text" class="form-control mb-2" placeholder="اسم المقالة" name="articleName"
+                        [(ngModel)]="articleNameForUpdate">
+                      <textarea name="articleText" id="articles" class="form-control" placeholder="ادخل المقالة هنا"
+                        cols="10" rows="5" style="resize: none;" [(ngModel)]="articleUrlForUpdate"></textarea>
+                    </form>
+                  </div>
+                  <div class="border-top border-2 py-3 px-2">
+                    <button type="button" class="btn btn-primary ms-2" (click)="updateArticle()">حفظ التعديلات</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">الغاء</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="articles" *ngIf="typeInput == 'register'">
+            <h6 class="mb-2 pb-3 border-bottom border-bottom-2">تسجيل مسؤل جديد</h6>
+            <div class="mb-4">
+              <form>
+                <div class="mb-4">
+                  <label for="name" class="mb-2">اسم المسؤل</label>
+                  <input type="text" id="name" class="form-control" placeholder="قم بادخال اسم المسؤل" name="name"
+                    [(ngModel)]="name">
+                  <p class="mt-1 text-danger d-none" id="nameErr">قم بادخال البريد الإسم</p>
+                </div>
+                <div class="mb-4">
+                  <label for="email" class="mb-2">الايميل</label>
+                  <input type="email" id="email" class="form-control" placeholder="قم بادخال الايميل" name="email"
+                    [(ngModel)]="email">
+                  <p class="mt-1 text-danger d-none" id="emailErr">قم بادخال البريد الإلكتروني</p>
+                </div>
+                <div class="mb-4">
+                  <label for="password" class="mb-2">كلمة المرور</label>
+                  <input type="password" id="password" class="form-control" placeholder="قم بادخال كلمة المرور"
+                    name="password" [(ngModel)]="password">
+                  <p class="mt-1 text-danger d-none" id="passwordErr">قم بادخال كلمة المرور</p>
+                </div>
+              </form>
+            </div>
+            <button (click)="register()" class="form-control submit-btn">انشاء حساب جديد</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
